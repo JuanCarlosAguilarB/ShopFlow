@@ -1,0 +1,5 @@
+CREATE DATABASE keycloak
+    WITH
+    OWNER = admin
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1;

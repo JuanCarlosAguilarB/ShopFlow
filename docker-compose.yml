@@ -30,7 +30,7 @@
 
 
 services:
-  postgres-database: # Example. Remove before using.
+  postgres-database:
     image: postgres:latest
     environment:
       POSTGRES_DB: postgres

@@ -1,4 +1,4 @@
-package auth_service.user.domain;
+package auth_service.user;
 
 import lombok.Data;
 

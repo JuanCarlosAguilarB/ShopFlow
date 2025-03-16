@@ -10,7 +10,7 @@ public class OrderFinder {
 
     private OrderRepository repository;
 
-    public Mono<OrderResponse> findOrders() {
+    public Mono<OrdersResponse> findOrders() {
 
 //        return repository.findAll().collect(Collectors.toList()).map(
 //                orders -> new OrderResponse(orders.stream().toList())
@@ -24,7 +24,7 @@ public class OrderFinder {
         // returning response or mono empty when we get an error
         return repository.findAll() //
                 .collectList() // this method return a  Mono<List<Order>>
-                .map(OrderResponse::new)
+                .map(OrdersResponse::new)
                 .doOnError(
 //                        throwable -> Mono.error(throwable)
                     error -> Mono.empty()

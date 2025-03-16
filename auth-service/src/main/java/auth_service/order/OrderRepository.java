@@ -5,5 +5,5 @@ import reactor.core.publisher.Mono;
 
 public interface OrderRepository {
     Mono<Void> save(Order order);
-    Flux<Order> findAll();
+    Flux<OrderResponse> findAll();
 }

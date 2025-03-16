@@ -1,4 +1,4 @@
-package auth_service.order.infrastructure.persistence;
+package auth_service.order.persistence;
 
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;

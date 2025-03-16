@@ -28,7 +28,7 @@ public class OrderController {
     }
 
     @GetMapping("api/v1/orders")
-    public Mono<ResponseEntity<OrderResponse>> findOrders() {
+    public Mono<ResponseEntity<OrdersResponse>> findOrders() {
         return finderService.findOrders()
                 .map(order -> ResponseEntity.ok().body(order))
                 .defaultIfEmpty(ResponseEntity.notFound().build());

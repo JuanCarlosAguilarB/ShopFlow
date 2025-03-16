@@ -1,4 +1,4 @@
-package auth_service.order.infrastructure.persistence;
+package auth_service.order.persistence;
 
 import auth_service.order.Order;
 import lombok.AllArgsConstructor;

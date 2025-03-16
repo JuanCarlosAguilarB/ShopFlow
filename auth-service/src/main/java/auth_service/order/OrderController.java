@@ -1,9 +1,5 @@
-package auth_service.order.api;
+package auth_service.order;
 
-import auth_service.order.domain.Order;
-import auth_service.order.service.OrderCreator;
-import auth_service.order.service.OrderFinder;
-import auth_service.order.service.OrderResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

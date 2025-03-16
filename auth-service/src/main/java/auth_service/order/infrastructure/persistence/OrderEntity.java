@@ -1,6 +1,6 @@
 package auth_service.order.infrastructure.persistence;
 
-import auth_service.order.domain.Order;
+import auth_service.order.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

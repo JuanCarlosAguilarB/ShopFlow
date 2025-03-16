@@ -1,7 +1,7 @@
 package auth_service.order.infrastructure.persistence;
 
-import auth_service.order.domain.Order;
-import auth_service.order.domain.OrderRepository;
+import auth_service.order.Order;
+import auth_service.order.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;

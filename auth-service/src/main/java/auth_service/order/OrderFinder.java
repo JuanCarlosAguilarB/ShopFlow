@@ -1,6 +1,5 @@
-package auth_service.order.service;
+package auth_service.order;
 
-import auth_service.order.domain.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;

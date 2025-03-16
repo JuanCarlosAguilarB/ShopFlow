@@ -27,7 +27,7 @@ public class RDBOrderRepository implements OrderRepository {
 
     @Override
     public Flux<Order> findAll() {
-//        return repository.findAll().map(orderEntity -> OrderRepository::fromDomain);
-        return Flux.just(new Order(), new Order());
+        return repository.findAll().map(OrderEntity::toDomain);
+//        return Flux.just(new Order(), new Order()); // for testing, i didnt work with data
     }
 }

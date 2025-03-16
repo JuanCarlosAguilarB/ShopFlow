@@ -17,12 +17,18 @@ public class OrderController {
 
     @PostMapping("api/v1/orders")
     public Mono<ResponseEntity<?>> save(@RequestBody Order order) {
-        service.save(order);
-        return Mono.just(ResponseEntity.ok().build());
+
+//        service.save(order);
+//        return Mono.just(ResponseEntity.ok().build());
+
+        // fixing the wrong management of asynchronis
+        // now, we wait for ending of the save method
+        return service.save(order)
+                .then(Mono.just(ResponseEntity.ok().build()));
     }
 
     @GetMapping("api/v1/orders")
-    public Mono<ResponseEntity<OrderResponse>> findById() {
+    public Mono<ResponseEntity<OrderResponse>> findOrders() {
         return finderService.findOrders()
                 .map(order -> ResponseEntity.ok().body(order))
                 .defaultIfEmpty(ResponseEntity.notFound().build());

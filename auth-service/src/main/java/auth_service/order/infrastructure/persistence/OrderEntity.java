@@ -37,4 +37,15 @@ public class OrderEntity {
                 order.getStatus()
         );
     }
+
+    public static Order toDomain(OrderEntity entity){
+        return new Order(
+                entity.getId(),
+                entity.getUserId(),
+                entity.getCreatedAt(),
+                entity.getDeliveryDate(),
+                entity.getTotal(),
+                entity.getStatus()
+        );
+    }
 }

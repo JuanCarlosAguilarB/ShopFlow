@@ -9,7 +9,4 @@
     - **Sub-case 3:** **Customer history update. An event is sent to update the customer's purchase history.
     - **Sub-case 4:** **Sending order confirmation. An event is sent to send an email or notification to the customer.
 
-
-
 -----
-

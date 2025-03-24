@@ -1,5 +1,6 @@
 package auth_service.order;
 
+import auth_service.order.domain.PurchaseOrder;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +17,14 @@ public class OrderController {
     private final OrderFinder finderService;
 
     @PostMapping("api/v1/orders")
-    public Mono<ResponseEntity<?>> save(@RequestBody Order order) {
+    public Mono<ResponseEntity<?>> save(@RequestBody PurchaseOrder purchaseOrder) {
 
-//        service.save(order);
+//        service.save(purchaseOrder);
 //        return Mono.just(ResponseEntity.ok().build());
 
         // fixing the wrong management of asynchronis
         // now, we wait for ending of the save method
-        return service.save(order)
+        return service.save(purchaseOrder)
                 .then(Mono.just(ResponseEntity.ok().build()));
     }
 

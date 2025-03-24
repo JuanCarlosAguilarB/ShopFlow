@@ -1,0 +1,10 @@
+package auth_service.order.domain;
+
+import auth_service.order.OrderResponse;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+public interface PurchaseOrderRepository {
+    Mono<Void> save(PurchaseOrder purchaseOrder);
+    Flux<OrderResponse> findAll();
+}

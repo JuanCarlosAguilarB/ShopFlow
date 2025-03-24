@@ -1,7 +1,7 @@
-package auth_service.order.persistence;
+package auth_service.order.infrastructure.persistence;
 
-import auth_service.order.Order;
-import auth_service.order.OrderRepository;
+import auth_service.order.domain.PurchaseOrder;
+import auth_service.order.domain.PurchaseOrderRepository;
 import auth_service.order.OrderResponse;
 import auth_service.order.UserResponse;
 import lombok.AllArgsConstructor;
@@ -16,19 +16,19 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @Repository
-public class RDBOrderRepository implements OrderRepository {
+public class RDPurchasePurchaseOrderRepository implements PurchaseOrderRepository {
 
-    private final R2DBCOrderRepository repository;
+    private final PurchaseOrderEntityRepository repository;
 
     // to make joins we can use DatabaseClient or R2dbcEntityTemplate
     private final DatabaseClient databaseClient;
 
     @Override
-    public Mono<Void> save(Order order) {
-        OrderEntity orderEntity = OrderEntity.fromDomain(order);
-        System.out.println(orderEntity);
+    public Mono<Void> save(PurchaseOrder purchaseOrder) {
+        PurchaseOrderEntity purchaseOrderEntity = PurchaseOrderEntity.fromDomain(purchaseOrder);
+        System.out.println(purchaseOrderEntity);
         // Se suscribe explícitamente para forzar la ejecución (esto no es recomendable para producción)
-        repository.save(orderEntity)
+        repository.save(purchaseOrderEntity)
                 .doOnTerminate(() -> System.out.println("La operación de guardado ha terminado"))
                 .doOnError(error -> System.out.println("Error al guardar: " + error.getMessage()))
                 .subscribe();  // Suscripción al flujo
@@ -38,8 +38,8 @@ public class RDBOrderRepository implements OrderRepository {
     @Override
     public Flux<OrderResponse> findAll() {
 
-//        return repository.findAll().map(OrderEntity::toDomain);
-//        return Flux.just(new Order(), new Order()); // for testing, i didnt work with data
+//        return repository.findAll().map(PurchaseOrderEntity::toDomain);
+//        return Flux.just(new PurchaseOrder(), new PurchaseOrder()); // for testing, i didnt work with data
 
 
         String query = "SELECT o.id AS orderId, o.created_at AS createdAt, o.delivery_date AS deliveryDate, " +

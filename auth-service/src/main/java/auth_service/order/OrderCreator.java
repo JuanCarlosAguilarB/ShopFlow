@@ -1,5 +1,7 @@
 package auth_service.order;
 
+import auth_service.order.domain.PurchaseOrder;
+import auth_service.order.domain.PurchaseOrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -7,20 +9,20 @@ import reactor.core.publisher.Mono;
 @Service
 @AllArgsConstructor
 public class OrderCreator {
-    private final OrderRepository repository;
+    private final PurchaseOrderRepository repository;
 
-    public Mono<Void> save(Order order){
-         return repository.save(order);
+    public Mono<Void> save(PurchaseOrder purchaseOrder){
+         return repository.save(purchaseOrder);
 
          // if we want to work with any async process after that response, we could use  doOnTerminate, doOnSuccess or doOnError, for example
-//        return repository.save(order)
+//        return repository.save(purchaseOrder)
 //                .doOnSuccess(aVoid -> {
-//                    // this was executed after the order was saved
-//                    System.out.println("Order saved successfully!");
+//                    // this was executed after the purchaseOrder was saved
+//                    System.out.println("PurchaseOrder saved successfully!");
 //                })
 //                .doOnError(e -> {
 //                    // in case of error
-//                    System.err.println("Error saving order: " + e.getMessage());
+//                    System.err.println("Error saving purchaseOrder: " + e.getMessage());
 //                });
     }
 }

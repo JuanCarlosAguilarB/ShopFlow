@@ -1,5 +1,6 @@
 package auth_service.order;
 
+import auth_service.order.domain.PurchaseOrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -8,7 +9,7 @@ import reactor.core.publisher.Mono;
 @AllArgsConstructor
 public class OrderFinder {
 
-    private OrderRepository repository;
+    private PurchaseOrderRepository repository;
 
     public Mono<OrdersResponse> findOrders() {
 
@@ -18,12 +19,12 @@ public class OrderFinder {
 
         // refactor
 //        return repository.findAll() //
-//                .collectList() // this method return a  Mono<List<Order>>
+//                .collectList() // this method return a  Mono<List<PurchaseOrder>>
 //                .map(OrderResponse::new);
 
         // returning response or mono empty when we get an error
         return repository.findAll() //
-                .collectList() // this method return a  Mono<List<Order>>
+                .collectList() // this method return a  Mono<List<PurchaseOrder>>
                 .map(OrdersResponse::new)
                 .doOnError(
 //                        throwable -> Mono.error(throwable)

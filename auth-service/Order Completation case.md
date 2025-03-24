@@ -1,4 +1,4 @@
-### Use Case: Order Completion
+### Use Case: Order Paid
 
 1. **Initial action (Order Completion):**
    - A customer places an order, and upon doing so, an event is triggered in Kafka that starts the workflow. This event is sent to the `order-placed` queue.

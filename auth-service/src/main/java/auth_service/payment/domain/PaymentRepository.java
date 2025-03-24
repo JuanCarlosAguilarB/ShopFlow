@@ -6,4 +6,5 @@ import java.util.UUID;
 
 public interface PaymentRepository {
     Mono<Boolean> wasPaid(UUID productId);
+    Mono<Void> save(Payment payment);
 }

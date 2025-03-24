@@ -48,4 +48,22 @@ public class ProductFinderShould {
 
         verify(repository, times(1)).IsAvailable(productId);
     }
+
+
+    @Test
+    public void should_be_found_a_unavailable_product() {
+//        ProductRepository repository = Mockito.mock(ProductRepository.class);
+//        ProductFinder finder = new ProductFinder(repository);
+
+        UUID productId = UUID.randomUUID();
+        when(repository.IsAvailable(productId)).thenReturn(Mono.just(false));
+
+        Mono<Boolean> result = finder.IsAvailable(productId);
+
+        StepVerifier.create(result)
+                .expectNext(false)
+                .verifyComplete();
+
+        verify(repository, times(1)).IsAvailable(productId);
+    }
 }

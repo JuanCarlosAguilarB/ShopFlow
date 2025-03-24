@@ -4,7 +4,10 @@ import auth_service.order.OrderResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface PurchaseOrderRepository {
     Mono<Void> save(PurchaseOrder purchaseOrder);
     Flux<OrderResponse> findAll();
+    Mono<Boolean> allProductsAreAvailable(UUID purchaseOrderId);
 }

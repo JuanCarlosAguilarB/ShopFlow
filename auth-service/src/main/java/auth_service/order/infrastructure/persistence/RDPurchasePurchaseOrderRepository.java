@@ -1,9 +1,9 @@
 package auth_service.order.infrastructure.persistence;
 
-import auth_service.order.domain.PurchaseOrder;
-import auth_service.order.domain.PurchaseOrderRepository;
 import auth_service.order.OrderResponse;
 import auth_service.order.UserResponse;
+import auth_service.order.domain.PurchaseOrder;
+import auth_service.order.domain.PurchaseOrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Repository;
@@ -57,6 +57,11 @@ public class RDPurchasePurchaseOrderRepository implements PurchaseOrderRepositor
                         row.get("status", Boolean.class)
                 ))
                 .all();  // Return the Flux of OrderResponse
+    }
+
+    @Override
+    public Mono<Boolean> allProductsAreAvailable(UUID purchaseOrderId) {
+        return Mono.just(true);
     }
 
 }

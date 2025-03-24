@@ -21,7 +21,7 @@ public class PostController {
     public Mono<ResponseEntity> ConfirmPayment(PaymentRequest paymentRequest) {
         // we will supose that this is a payment confirmation, so we will create a payment
 
-        return paymentCreator.create(paymentRequest.purchaseOrderId())
+        return paymentCreator.create(paymentRequest.purchaseOrderId(), paymentRequest.amount())
                 .doAfterTerminate(() -> log.info("Payment request received: {}", paymentRequest))
                 .doOnTerminate(() -> log.info("Payment created"))
                 .then(Mono.just(ResponseEntity.ok().build()));
@@ -31,6 +31,7 @@ public class PostController {
 
 record PaymentRequest(
 //        String paymentId, String paymentMethod, String paymentStatus
-    UUID purchaseOrderId
+    UUID purchaseOrderId,
+    Double amount
 ) {
 }

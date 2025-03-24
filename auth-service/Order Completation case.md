@@ -10,3 +10,8 @@
     - **Sub-case 4:** **Sending order confirmation. An event is sent to send an email or notification to the customer.
 
 -----
+
+new strategy: use case: pay the order. 
+
+- **Sub-case 1:** **Inventory check. An event is sent to verify if the products are available.
+- **Sub-case 2:** **Payment validation. An event is sent to verify if the payment was successful. ---> validate if the pay was equal to cost of order

@@ -16,6 +16,7 @@ public class Payment {
     private UUID purchaseOrderId;
     private boolean wasSuccessful;
     private LocalDateTime createdAt;
+    private Double amount;
 
 
     public boolean getWasSuccessful() {

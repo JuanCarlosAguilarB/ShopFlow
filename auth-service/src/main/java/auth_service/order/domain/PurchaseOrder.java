@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -17,7 +16,7 @@ public class PurchaseOrder {
     private UUID userId;
     private LocalDate createdAt;
     private LocalDate deliveryDate;
-    private BigDecimal total;
+    private Double total;
 
     private String orderNumber;
     private LocalDate updatedAt;

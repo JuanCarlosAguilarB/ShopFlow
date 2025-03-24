@@ -27,6 +27,7 @@ public class RDPaymentRepository implements PaymentRepository {
                 .purchaseOrderId(payment.getPurchaseOrderId())
                 .wasSuccessful(payment.getWasSuccessful())
                 .createdAt(payment.getCreatedAt())
+                .amount(payment.getAmount())
                 .build())
                 .then(Mono.empty());
     }

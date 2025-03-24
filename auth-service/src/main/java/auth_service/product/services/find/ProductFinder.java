@@ -13,6 +13,6 @@ public class ProductFinder {
     private final ProductRepository repository;
 
     public Mono<Boolean>  IsAvailable(UUID productId) {
-        return  Mono.just(true);
+        return  repository.IsAvailable(productId);
     }
 }

@@ -7,10 +7,11 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.UUID;
 
+
 @AllArgsConstructor
 @Getter
 @Setter
-public class Product {
+public class ProductResponse {
 
     private UUID id;
     private String name;
@@ -19,7 +20,5 @@ public class Product {
     private int quantity;
     private LocalDate createdAt;
 
-    public static Product create(UUID id, String name, String description, double price, int quantity) {
-        return new Product(id, name, description, price, quantity, LocalDate.now());
-    }
+
 }

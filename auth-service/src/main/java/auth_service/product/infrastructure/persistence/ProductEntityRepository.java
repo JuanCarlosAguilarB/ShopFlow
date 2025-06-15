@@ -1,4 +1,4 @@
-package auth_service.product.infrastructure;
+package auth_service.product.infrastructure.persistence;
 
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 

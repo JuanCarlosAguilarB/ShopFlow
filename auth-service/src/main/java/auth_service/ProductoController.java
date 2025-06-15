@@ -1,11 +1,8 @@
 package auth_service;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/productos")
@@ -18,11 +15,11 @@ public class ProductoController {
 //        this.service = service;
 //    }
 
-    @GetMapping
-    @Operation(summary = "Obtener todos los productos")
-    public Flux<String> obtenerTodos() {
-        return Flux.fromIterable(List.of("s"));
-    }
+//    @GetMapping
+//    @Operation(summary = "Obtener todos los productos")
+//    public Flux<String> obtenerTodos() {
+//        return Flux.fromIterable(List.of("s"));
+//    }
 
 //    @GetMapping("/{id}")
 //    @Operation(summary = "Obtener un producto por ID")

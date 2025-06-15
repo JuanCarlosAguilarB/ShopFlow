@@ -13,7 +13,7 @@ import java.util.UUID;
 @RestController
 @AllArgsConstructor
 @Slf4j
-public class PostController {
+public class PostPaymentController {
 
     private final PaymentCreator paymentCreator;
 

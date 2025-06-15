@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -24,7 +23,7 @@ public class PurchaseOrderEntity {
 
     @Column("delivery_date")
     private LocalDate deliveryDate;
-    private BigDecimal total;
+    private Double total;
 
     private String orderNumber;
     private LocalDate updatedAt;

@@ -23,7 +23,9 @@ public class RDPaymentRepository implements PaymentRepository {
     @Override
     public Mono<Void> save(Payment payment) {
         return repository.save(PaymentEntity.builder()
-                .id(payment.getId())
+                // you have to remember ReactiveCrudRepository.save() makes a update when id!=null and insert in other case
+                // but, if we have a @id annotation un the r2dbc entity, r2dbc make assumption that the db will generate the Id.
+                .id(payment.getId()==null ? UUID.randomUUID() : payment.getId())
                 .purchaseOrderId(payment.getPurchaseOrderId())
                 .wasSuccessful(payment.getWasSuccessful())
                 .createdAt(payment.getCreatedAt())

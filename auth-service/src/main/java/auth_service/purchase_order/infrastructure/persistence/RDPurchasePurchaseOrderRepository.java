@@ -1,9 +1,9 @@
 package auth_service.purchase_order.infrastructure.persistence;
 
-import auth_service.order.OrderResponse;
-import auth_service.order.UserResponse;
 import auth_service.purchase_order.domain.PurchaseOrder;
 import auth_service.purchase_order.domain.PurchaseOrderRepository;
+import auth_service.purchase_order.domain.PurchaseOrderResponse;
+import auth_service.purchase_order.domain.UserResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
@@ -46,7 +46,7 @@ public class RDPurchasePurchaseOrderRepository implements PurchaseOrderRepositor
     }
 
     @Override
-    public Flux<OrderResponse> findAll() { // TODO: move to right repository
+    public Flux<PurchaseOrderResponse> findAll() { // TODO: move to right repository
 
 //        return repository.findAll().map(PurchaseOrderEntity::toDomain);
 //        return Flux.just(new PurchaseOrder(), new PurchaseOrder()); // for testing, i didnt work with data
@@ -58,7 +58,7 @@ public class RDPurchasePurchaseOrderRepository implements PurchaseOrderRepositor
                 "JOIN user_entity u ON o.user_id = u.id";
 
         return databaseClient.sql(query)
-                .map((row, metadata) -> new OrderResponse(
+                .map((row, metadata) -> new PurchaseOrderResponse(
                         row.get("orderId", UUID.class),
                         new UserResponse(row.get("userId", UUID.class),row.get("username", String.class)),
                         row.get("createdAt", LocalDate.class),

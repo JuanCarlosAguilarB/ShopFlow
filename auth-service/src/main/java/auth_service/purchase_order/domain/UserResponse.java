@@ -1,4 +1,4 @@
-package auth_service.order;
+package auth_service.purchase_order.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -19,6 +19,18 @@ public class PurchaseOrderCreator {
 
     public Mono<Void> create(UUID id, UUID userId, String orderNumber) {
 
+// if we want to work with any async process after that response, we could use  doOnTerminate, doOnSuccess or doOnError, for example
+//        return repository.save(purchaseOrder)
+//                .doOnSuccess(aVoid -> {
+//                    // this was executed after the purchaseOrder was saved
+//                    System.out.println("PurchaseOrder saved successfully!");
+//                })
+//                .doOnError(e -> {
+//                    // in case of error
+//                    System.err.println("Error saving purchaseOrder: " + e.getMessage());
+//                });
+
+
     //    TODO : search deleveryDate and total from order domain
     Double total = 0.0; // search
     LocalDate deliveryDate = LocalDate.now();

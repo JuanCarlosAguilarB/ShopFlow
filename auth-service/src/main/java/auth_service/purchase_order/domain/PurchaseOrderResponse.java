@@ -1,4 +1,4 @@
-package auth_service.order;
+package auth_service.purchase_order.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderResponse {
+public class PurchaseOrderResponse {
 
     private UUID id;
     private UserResponse user;  // we can replace it with a map, because, user isn't from this domain

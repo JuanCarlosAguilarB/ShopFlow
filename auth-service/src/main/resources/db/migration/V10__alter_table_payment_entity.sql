@@ -1,0 +1,1 @@
+ALTER TABLE payment_entity DROP COLUMN updated_at;

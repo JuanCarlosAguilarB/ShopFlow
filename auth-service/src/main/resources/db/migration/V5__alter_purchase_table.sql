@@ -1,1 +1,0 @@
-ALTER TABLE purchase_order_entity ADD COLUMN amount DOUBLE PRECISION;

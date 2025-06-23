@@ -1,0 +1,24 @@
+- **Sub-case 2:** **Payment validation. An event is sent to verify if the payment was successful.
+
+    create a endpoint to create an <<<<< what is a order, maybe changes it to shping cart or similar
+
+    create a endpoint to create a purchase
+        the entity purchase could be canceled, so we have to create a endpoint to cancel to purchase
+        we need to call to  method for searching deleveryDate base on OrderNumber, then it will go in Order domain
+            in the future it will be a consumer
+        we need to call to  method for getting the total of order
+            in the future it will be a consumer
+    create a endpoint to create a payment
+        payment endpoint allow partial pays,
+            we shoudnt allow payments if the amount of new pay is over the missing quote
+    create a method to update the estatus of payment
+        after queues, we will be a consumer
+        use it in post payment controller,
+    create a endpoint to get a specific payment
+
+so, in the feature we will be creating a payment with events when the payment was updated we notified the projections through to its subscribers
+
+
+
+
+### todo: refactor migrations

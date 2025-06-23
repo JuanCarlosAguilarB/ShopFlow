@@ -1,14 +1,15 @@
 package auth_service.payment.services.create;
 
-import auth_service.order.domain.PurchaseOrder;
-import auth_service.order.service.find.PurchaseOrderFinder;
-import auth_service.order.service.validate.PurchaseOrderValidator;
 import auth_service.payment.domain.Payment;
 import auth_service.payment.domain.PaymentRepository;
+import auth_service.purchase_order.domain.PurchaseOrder;
+import auth_service.purchase_order.services.PurchaseOrderFinder;
+import auth_service.purchase_order.services.validate.PurchaseOrderValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 //1) dont works
@@ -58,8 +59,14 @@ public class PaymentCreator {
 
     public Mono<Void> create(UUID purchaseOrderId, Double amount) {
         // execute two task in parallel that not have dependencies between them
-        Mono<Boolean> productsAvailable = purchaseOrderValidator.allProductsAreAvailable(purchaseOrderId);
-        Mono<PurchaseOrder> purchaseOrder = purchaseOrderFinder.findById(purchaseOrderId);
+        Mono<Boolean> productsAvailable = purchaseOrderValidator
+                .allProductsAreAvailable(purchaseOrderId);
+
+        Mono<PurchaseOrder> purchaseOrder = purchaseOrderFinder
+                .findById(purchaseOrderId)
+                .switchIfEmpty(
+                        Mono.error(new Exception("Product not available")) // TODO: make a right exception, a domain exception
+                        );
 
         // Mono.zip allows you to run the two operations in parallel and then combine them into a single stream.
         return Mono.zip(productsAvailable, purchaseOrder)
@@ -81,6 +88,7 @@ public class PaymentCreator {
                             .purchaseOrderId(purchaseOrderId)
                             .wasSuccessful(true)
                             .amount(amount.doubleValue())
+                            .createdAt(LocalDateTime.now())
                             .build())
                         .then();
                 });

@@ -5,5 +5,5 @@ CREATE TABLE payment_entity (
      was_successful BOOLEAN NOT NULL,
      created_at DATE NOT NULL,
      updated_at DATE NOT NULL,
-     FOREIGN KEY (purchase_order_id) REFERENCES purchase_order_entity(id)
+     FOREIGN KEY (purchase_order_id) REFERENCES purchase_order(id)
 );

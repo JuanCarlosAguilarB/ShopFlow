@@ -1,0 +1,1 @@
+ALTER TABLE payment_entity ADD COLUMN amount DOUBLE PRECISION;

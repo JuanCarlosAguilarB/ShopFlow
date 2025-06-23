@@ -1,0 +1,2 @@
+
+ALTER TABLE user_entity ADD COLUMN name VARCHAR(255);

@@ -1,7 +1,7 @@
-package auth_service.order.service.validate;
+package auth_service.purchase_order.services.validate;
 
-import auth_service.order.domain.PurchaseOrderRepository;
-import auth_service.order.service.find.PurchaseOrderFinder;
+import auth_service.purchase_order.domain.PurchaseOrderRepository;
+import auth_service.purchase_order.services.PurchaseOrderFinder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;

@@ -1,4 +1,4 @@
-package auth_service.order.domain;
+package auth_service.purchase_order.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,4 +24,19 @@ public class PurchaseOrder {
     private Boolean wasClosed;
     // TODO: an order can be cancelled when the payment was not made or the time exceeded 15 days and the payment was not made
     private Boolean wasCancelled;
+
+    public static PurchaseOrder create(UUID id, UUID userId, String orderNumber, LocalDate deliveryDate, Double total) {
+        return new PurchaseOrder(
+                id,
+                userId,
+                LocalDate.now(),
+                deliveryDate,
+                total,
+                orderNumber,
+                LocalDate.now(),
+                false,
+                false
+        );
+    }
+
 }

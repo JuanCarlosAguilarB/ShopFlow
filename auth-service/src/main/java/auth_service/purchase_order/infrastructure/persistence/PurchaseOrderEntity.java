@@ -1,9 +1,10 @@
-package auth_service.order.infrastructure.persistence;
+package auth_service.purchase_order.infrastructure.persistence;
 
-import auth_service.order.domain.PurchaseOrder;
+import auth_service.purchase_order.domain.PurchaseOrder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -15,6 +16,8 @@ import java.util.UUID;
 @Data
 @Table("purchase_order")
 public class PurchaseOrderEntity {
+
+    @Id
     private UUID id;
     private UUID userId;
 

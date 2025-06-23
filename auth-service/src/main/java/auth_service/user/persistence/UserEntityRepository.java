@@ -4,5 +4,5 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 import java.util.UUID;
 
-public interface R2DBCUserRepository extends ReactiveCrudRepository<UserEntity, UUID> {
+public interface UserEntityRepository extends ReactiveCrudRepository<UserEntity, UUID> {
 }

@@ -1,6 +1,6 @@
 package auth_service.order;
 
-import auth_service.order.domain.PurchaseOrder;
+import auth_service.purchase_order.domain.PurchaseOrder;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

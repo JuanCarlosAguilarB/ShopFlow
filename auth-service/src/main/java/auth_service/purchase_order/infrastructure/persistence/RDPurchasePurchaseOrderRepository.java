@@ -1,10 +1,12 @@
-package auth_service.order.infrastructure.persistence;
+package auth_service.purchase_order.infrastructure.persistence;
 
 import auth_service.order.OrderResponse;
 import auth_service.order.UserResponse;
-import auth_service.order.domain.PurchaseOrder;
-import auth_service.order.domain.PurchaseOrderRepository;
+import auth_service.purchase_order.domain.PurchaseOrder;
+import auth_service.purchase_order.domain.PurchaseOrderRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
@@ -16,27 +18,35 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @Repository
+@Slf4j
 public class RDPurchasePurchaseOrderRepository implements PurchaseOrderRepository {
 
-    private final PurchaseOrderEntityRepository repository;
+    private final PurchaseOrderEntityRepository entityRepository;
 
     // to make joins we can use DatabaseClient or R2dbcEntityTemplate
     private final DatabaseClient databaseClient;
 
+    // we're going to use R2dbcEntityTemplate due to we are generating the ids from back, and ReactiveCrudRepository doesn't allow it
+    private final R2dbcEntityTemplate template;
+
     @Override
     public Mono<Void> save(PurchaseOrder purchaseOrder) {
-        PurchaseOrderEntity purchaseOrderEntity = PurchaseOrderEntity.fromDomain(purchaseOrder);
-        System.out.println(purchaseOrderEntity);
-        // Se suscribe explícitamente para forzar la ejecución (esto no es recomendable para producción)
-        repository.save(purchaseOrderEntity)
-                .doOnTerminate(() -> System.out.println("La operación de guardado ha terminado"))
-                .doOnError(error -> System.out.println("Error al guardar: " + error.getMessage()))
-                .subscribe();  // Suscripción al flujo
-        return Mono.empty();
+//        PurchaseOrderEntity purchaseOrderEntity = PurchaseOrderEntity.fromDomain(purchaseOrder);
+//        System.out.println(purchaseOrderEntity);
+//
+//        entityRepository.save(purchaseOrderEntity)
+//                .doOnTerminate(() -> System.out.println("La operación de guardado ha terminado"))
+//                .doOnError(error -> System.out.println("Error al guardar: " + error.getMessage()))
+//                .subscribe();  // Suscripción al flujo
+
+        log.info("insert purchase order into repository : {}", purchaseOrder);
+        return  template.insert(PurchaseOrderEntity.class)
+                .using(PurchaseOrderEntity.fromDomain(purchaseOrder))
+                .then(Mono.empty());
     }
 
     @Override
-    public Flux<OrderResponse> findAll() {
+    public Flux<OrderResponse> findAll() { // TODO: move to right repository
 
 //        return repository.findAll().map(PurchaseOrderEntity::toDomain);
 //        return Flux.just(new PurchaseOrder(), new PurchaseOrder()); // for testing, i didnt work with data
@@ -62,6 +72,12 @@ public class RDPurchasePurchaseOrderRepository implements PurchaseOrderRepositor
     @Override
     public Mono<Boolean> allProductsAreAvailable(UUID purchaseOrderId) {
         return Mono.just(true);
+    }
+
+    @Override
+    public Mono<PurchaseOrder> findById(UUID id) {
+        return entityRepository.findById(id)
+                .map(PurchaseOrderEntity::toDomain);
     }
 
 }
